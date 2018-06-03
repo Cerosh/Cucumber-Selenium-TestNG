@@ -16,7 +16,7 @@ public class IndexPageStep {
 	@Before
     public void beforeScenario() {
         driver = new DriverFactory().getDriver();
-        System.out.println("this will run before the actual scenario");
+        System.out.println("This will run before the actual scenario");
     }
 	@Given("^user is on index page$")
     public void setup() throws Throwable {
@@ -26,7 +26,7 @@ public class IndexPageStep {
 	@After
     public void afterScenario() {
         new DriverFactory().destroyDriver();
-        System.out.println("this will run after scneario is finished, even if it failed");
+        System.out.println("This will run after scneario is finished, even if it failed");
     }
 	
 }
