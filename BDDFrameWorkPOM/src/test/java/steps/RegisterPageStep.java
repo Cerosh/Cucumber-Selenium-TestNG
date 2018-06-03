@@ -1,5 +1,7 @@
 package steps;
 
+import java.util.List;
+
 import cucumber.api.java.en.And;
 import pages.RegisterPage;
 import utils.DriverFactory;
@@ -7,12 +9,12 @@ import utils.DriverFactory;
 public class RegisterPageStep extends DriverFactory {
 
 	@And("^user provides first name as ([^\"]*)$")
-	public void user_provides_first_name_as(String firstName)  {
+	public void user_provides_first_name_as(String firstName) {
 		new RegisterPage(driver).user_provides_first_name_as(firstName);
 	}
 
 	@And("^user provides last name as ([^\"]*)$")
-	public void user_provides_the_last_name_as(String lastName)  {
+	public void user_provides_the_last_name_as(String lastName) {
 		new RegisterPage(driver).user_provides_the_last_name_as(lastName);
 	}
 
@@ -22,7 +24,7 @@ public class RegisterPageStep extends DriverFactory {
 	}
 
 	@And("^user provides email as ([^\"]*)$")
-	public void user_provides_the_email_as(String email)  {
+	public void user_provides_the_email_as(String email) {
 		new RegisterPage(driver).user_provides_the_email_as(email);
 	}
 
@@ -42,8 +44,8 @@ public class RegisterPageStep extends DriverFactory {
 	}
 
 	@And("^user provides postal Code as ([^\"]*)$")
-	public void user_provides_the_postalcode_as(String postalcode) throws Throwable {
-		new RegisterPage(driver).user_provides_the_postalcode_as(postalcode);
+	public void user_provides_the_postalCode_as(String postalCode) throws Throwable {
+		new RegisterPage(driver).user_provides_the_postalCode_as(postalCode);
 	}
 
 	@And("^user selects country as ([^\"]*)$")
@@ -62,8 +64,8 @@ public class RegisterPageStep extends DriverFactory {
 	}
 
 	@And("^user provides the confirm password again as ([^\"]*)$")
-	public void user_provides_the_confirm_password_again_as(String confirmPassword) throws Throwable {
-		new RegisterPage(driver).user_provides_the_confirm_password_again_as(confirmPassword);
+	public void user_provides_the_confirm_password_again_as(String password) throws Throwable {
+		new RegisterPage(driver).user_provides_the_confirm_password_again_as(password);
 	}
 
 	@And("^user Submits registration form$")
@@ -72,4 +74,36 @@ public class RegisterPageStep extends DriverFactory {
 
 	}
 
+	@And("^user provides details as follows:$")
+	public void user_provides_details_as_follows(List<UserDetails> users) throws Throwable {
+		UserDetails userToBeSignedUp = users.get(0);
+
+		new RegisterPage(driver).user_provides_first_name_as(userToBeSignedUp.firstName);
+		new RegisterPage(driver).user_provides_the_last_name_as(userToBeSignedUp.lastName);
+		new RegisterPage(driver).user_provides_the_phone_as(userToBeSignedUp.phone);
+		new RegisterPage(driver).user_provides_the_email_as(userToBeSignedUp.email);
+		new RegisterPage(driver).user_provides_the_address_as(userToBeSignedUp.address);
+		new RegisterPage(driver).user_provides_the_city_as(userToBeSignedUp.city);
+		new RegisterPage(driver).user_provides_the_state_as(userToBeSignedUp.state);
+		new RegisterPage(driver).user_provides_the_postalCode_as(userToBeSignedUp.postalCode);
+		new RegisterPage(driver).user_provides_the_country_as(userToBeSignedUp.country);
+		new RegisterPage(driver).user_provides_the_username_as(userToBeSignedUp.username);
+		new RegisterPage(driver).user_provides_the_password_as(userToBeSignedUp.password);
+		new RegisterPage(driver).user_provides_the_confirm_password_again_as(userToBeSignedUp.password);
+
+	}
+
+	private class UserDetails {
+		public String firstName;
+		public String lastName;
+		public String phone;
+		public String email;
+		public String address;
+		public String city;
+		public String state;
+		public String postalCode;
+		public String country;
+		public String username;
+		public String password;
+	}
 }
